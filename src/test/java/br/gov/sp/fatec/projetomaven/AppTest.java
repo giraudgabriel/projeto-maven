@@ -1,8 +1,8 @@
 package br.gov.sp.fatec.projetomaven;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
@@ -15,25 +15,25 @@ public class AppTest
     @Test
     public void testSum()
     {
-        Calculator calc = new Calculator();
+        final Calculator calc = new Calculator();
         assertEquals(2.0, calc.sum(), 0);
     }
+
     @Test
-    public void testSubtract()
-    {
-        Calculator calc = new Calculator();
+    public void testSubtract() {
+        final Calculator calc = new Calculator();
         assertEquals(0.0, calc.subtract(), 0);
     }
+
     @Test
-    public void testMultiply()
-    {
-        Calculator calc = new Calculator();
+    public void testMultiply() {
+        final Calculator calc = new Calculator();
         assertEquals(1.0, calc.multiply(), 0);
     }
+
     @Test
-    public void testDivide()
-    {
-        Calculator calc = new Calculator();
+    public void testDivide() {
+        final Calculator calc = new Calculator();
         assertEquals(1.0,  calc.divide(), 0);
     }
 }
