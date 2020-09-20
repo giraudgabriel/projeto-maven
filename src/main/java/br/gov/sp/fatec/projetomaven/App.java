@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import br.gov.sp.fatec.projetomaven.dao.TrabalhoDao;
+import br.gov.sp.fatec.projetomaven.dao.TrabalhoDaoJpa;
 import br.gov.sp.fatec.projetomaven.entity.Aluno;
+import br.gov.sp.fatec.projetomaven.entity.PersistenceManager;
 import br.gov.sp.fatec.projetomaven.entity.Professor;
 import br.gov.sp.fatec.projetomaven.entity.Trabalho;
 
@@ -19,9 +20,7 @@ import br.gov.sp.fatec.projetomaven.entity.Trabalho;
  */
 public class App {
     public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("avaliacao");
-
-        EntityManager manager = factory.createEntityManager();
+        EntityManager manager = PersistenceManager.getInstance().getEntityManager();
 
         Aluno aluno = new Aluno();
 
@@ -41,16 +40,9 @@ public class App {
         trabalho.setAlunos(new HashSet<Aluno>());
         trabalho.getAlunos().add(aluno);
 
-        try {
-            manager.getTransaction().begin();
-            manager.persist(aluno);
-            manager.persist(professor);
-            manager.persist(trabalho);
-            manager.getTransaction().commit();
-        } catch (Exception e) {
-            manager.getTransaction().rollback();
-            e.printStackTrace();
-        }
+        TrabalhoDao trabalhoDao = new TrabalhoDaoJpa(manager);
+
+        trabalhoDao.salvarTrabalho(trabalho);
 
         manager.clear();
 

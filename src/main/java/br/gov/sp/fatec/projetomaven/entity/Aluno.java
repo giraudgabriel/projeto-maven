@@ -14,6 +14,17 @@ import javax.persistence.Table;
 @Entity
 @PrimaryKeyJoinColumn(name = "alu_id")
 public class Aluno extends Usuario{
+    public Aluno() {
+        super();
+    }
+
+    public Aluno(String nomeUsuario, String senha, Long ra) {
+        super();
+        setNomeUsuario(nomeUsuario);
+        setSenha(senha);
+        setRa(ra);
+    }
+    
     
     @Column(name = "alu_ra")
     private Long ra;
