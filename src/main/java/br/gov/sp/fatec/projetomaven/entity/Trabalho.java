@@ -37,9 +37,8 @@ public class Trabalho {
     private Professor avaliador;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "ent_entrega",
-               joinColumns = {@JoinColumn(name = "tra_id")},
-               inverseJoinColumns = {@JoinColumn(name = "alu_id")} )
+    @JoinTable(name = "ent_entrega", joinColumns = { @JoinColumn(name = "tra_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "alu_id") })
     private Set<Aluno> alunos;
 
     public Long getId() {
@@ -90,5 +89,4 @@ public class Trabalho {
         this.alunos = alunos;
     }
 
-    
 }
